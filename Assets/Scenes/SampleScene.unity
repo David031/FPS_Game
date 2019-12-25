@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bccee91732860946a60aa31fde90176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 324282894}
 --- !u!1001 &70557230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -678,6 +679,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f7960c0d0ec71241a60dc9c24145a11, type: 3}
+--- !u!1 &324282894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 146727183}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &335707869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2754,6 +2761,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceElemental
       objectReference: {fileID: 0}
+    - target: {fileID: 186680, guid: c004737d52323444799f4881ca789f2f, type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 417334, guid: c004737d52323444799f4881ca789f2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.69
@@ -2800,6 +2811,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9598882, guid: c004737d52323444799f4881ca789f2f, type: 3}
       propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9598882, guid: c004737d52323444799f4881ca789f2f, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
