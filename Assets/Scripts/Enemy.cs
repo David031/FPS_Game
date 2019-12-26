@@ -1,18 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
-    // Start is called before the first frame update
     public GameObject player;
-    void Start () {
+    public NavMeshAgent enemy;
+    public Animator animator;
+    static int hp = 100;
+    void Start () { }
 
-    }
-
-    // Update is called once per frame
     void Update () {
-        Quaternion targetRotation = Quaternion.LookRotation (player.transform.position - transform.position);
-        transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, 1 * Time.deltaTime);
-        transform.position += transform.forward * 1f * Time.deltaTime;
+        if (hp > 0) {
+            if (enemy.remainingDistance != Mathf.Infinity && enemy.remainingDistance <= enemy.stoppingDistance) {
+                animator.SetBool ("isRunning", false);
+                animator.SetBool ("isAttack", true);
+                enemy.destination = player.transform.position;
+            } else {
+                animator.SetBool ("isRunning", true);
+                animator.SetBool ("isAttack", false);
+                enemy.destination = player.transform.position;
+            }
+        } else {
+            animator.SetBool ("isDying", true);
+            animator.SetBool ("isRunning", false);
+            animator.SetBool ("isAttack", false);
+            Destroy (gameObject, 0.6f);
+        }
+
     }
 }

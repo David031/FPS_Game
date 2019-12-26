@@ -63,7 +63,12 @@ ModelImporter:
   - first:
       137: 13700000
     second: MachineGun_01
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #987'
+    second: {fileID: 2100000, guid: ec9f5a0217320ed49baf30d24d1e85e3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -83,7 +88,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -144,10 +149,10 @@ ModelImporter:
     globalScale: 0.01
     rootMotionBoneName: Dummy002
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
