@@ -4,29 +4,51 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
-    public GameObject player;
-    public NavMeshAgent enemy;
-    public Animator animator;
-    static int hp = 100;
-    void Start () { }
+    GameObject player;
+    NavMeshAgent enemy;
+    Animator animator;
+    bool die;
+    int hp;
+    void Start () {
+        die = false;
+        hp = 100;
+        player = GameObject.Find ("FPSController");
+        enemy = gameObject.GetComponent<NavMeshAgent> ();
+        animator = gameObject.GetComponent<Animator> ();
+    }
 
     void Update () {
-        if (hp > 0) {
-            if (enemy.remainingDistance != Mathf.Infinity && enemy.remainingDistance <= enemy.stoppingDistance) {
-                animator.SetBool ("isRunning", false);
-                animator.SetBool ("isAttack", true);
-                enemy.destination = player.transform.position;
-            } else {
-                animator.SetBool ("isRunning", true);
-                animator.SetBool ("isAttack", false);
-                enemy.destination = player.transform.position;
-            }
+        enemy.destination = player.transform.position;
+
+        if (enemy.remainingDistance != Mathf.Infinity && enemy.remainingDistance <= enemy.stoppingDistance && !enemy.pathPending && enemy.remainingDistance != 0) {
+            animator.SetBool ("isRunning", false);
+            animator.SetBool ("isAttack", true);
+            animator.SetBool ("isIdel", false);;
+            Debug.Log ("true");
+            GameController.playerHP -= 10;
         } else {
+            animator.SetBool ("isRunning", true);
+            animator.SetBool ("isAttack", false);
+            animator.SetBool ("isIdel", false);
+        }
+        if (GameController.isGameEnd) {
+            Destroy (gameObject);
+        }
+    }
+    void OnDestroy () {
+        GameController.score += 19 * 18;
+        GameController.killCount += 1;
+    }
+    void OnCollisionEnter (Collision collision) {
+        if (collision.gameObject.tag == "Ammo") {
+            hp -= 10;
+        }
+        if (hp <= 0) {
             animator.SetBool ("isDying", true);
             animator.SetBool ("isRunning", false);
             animator.SetBool ("isAttack", false);
+            animator.SetBool ("isIdel", false);
             Destroy (gameObject, 0.6f);
         }
-
     }
 }
